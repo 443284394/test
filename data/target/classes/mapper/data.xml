@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper   
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.wpg.dao.DataDao">
+	<select id="findAllData" parameterType="String" resultType="com.wpg.pojo.Data">
+		select * from ${tablename}
+	</select>
+	<update id="addData">
+		insert into ${tablename}(name,type,unit,num,brand,states,price,tablename,mark) values(#{Data.name},#{Data.type},#{Data.unit},#{Data.num},#{Data.brand},#{Data.states},#{Data.price},#{Data.tablename},#{Data.mark})
+	</update>
+	<delete id="deleteDataByName">
+		delete  from ${tablename} where name=${name}
+	</delete>
+	<select id="findAllDataById" resultType="com.wpg.pojo.Data">
+		select * from ${tablename} where id=${id}
+	</select>
+	<update id="updateData">
+		update ${tablename} set name=#{Data.name},type=#{Data.type},unit=#{Data.unit},num=#{Data.num},brand=#{Data.brand},states=#{Data.states},price=#{Data.price} where id=#{Data.id}
+	</update>
+	<select id="findMaxMark" resultType="Integer">
+		select max(mark) from ${tablename}
+	</select>
+</mapper>
